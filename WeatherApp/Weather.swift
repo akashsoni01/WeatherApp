@@ -39,7 +39,15 @@ struct Weather {
     }
   //https://api.darksky.net/forecast/2e2f9ed2435a66c75142f46cc437fa85/24.8267,77.4233
     static let basePathString = "https://api.darksky.net/forecast/2e2f9ed2435a66c75142f46cc437fa85/"
-    static func forcast(with location:String,completion: ([Weather])->()){
+    
+    
+    
+    
+    //completion todo........
+    
+    
+    
+    static func forcast(with location:String,completion: @escaping ([Weather])->()){
         let url = basePathString + location
         let request = URLRequest(url: URL(string: url)!)
         let task = URLSession.shared.dataTask(with: request){
@@ -50,10 +58,12 @@ struct Weather {
             if let data = data {
                 do{
                     if let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String:Any]{
-                        if let dailyWeather = json["daily"] as? [[String:Any]]{
-                            for oneDayWeather in dailyWeather{
-                                if let weatherObject = try? Weather(json: oneDayWeather){
-                                    weatherArray.append(weatherObject)
+                        if let dailyWeather = json["hourly"] as? [String:Any]{
+                            if let dailyData = dailyWeather["data"] as? Array<[String:Any]>{
+                                for oneDayWeather in dailyData{
+                                    if let weatherObject = try? Weather(json: oneDayWeather) {
+                                        weatherArray.append(weatherObject)
+                                    }
                                 }
                             }
                         }
@@ -61,16 +71,15 @@ struct Weather {
                 }catch{
                     
                 }
+                completion(weatherArray)
+                
             }
             }
         task.resume()
         
-        
-        
-        
     }
     
-    //            "daily": {
+    //        wrong xxxxxxxxx    "daily": {
     //                "summary": "Mixed precipitation throughout the week, with temperatures falling to 39°F on Saturday.",
     //                "icon": "rain",
     //                "data": [{
