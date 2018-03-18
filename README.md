@@ -1,11 +1,9 @@
-# WeatherApp
-
-![1](https://user-images.githubusercontent.com/33283321/37565823-7dfb5500-2ad6-11e8-8c7c-cfd38ef8fbf4.png)
-
-
-![2](https://user-images.githubusercontent.com/33283321/37565847-e8459254-2ad6-11e8-855a-3a50918ada1b.png)
+![1](https://user-images.githubusercontent.com/33283321/37565883-63f9b3bc-2ad7-11e8-8556-e6d326e0f36c.png)
 
 
 
-![3](https://user-images.githubusercontent.com/33283321/37565848-e87fdf86-2ad6-11e8-8cd0-491435a818c6.png)
+![2](https://user-images.githubusercontent.com/33283321/37565884-64267e9c-2ad7-11e8-8d42-869fb68580c6.png)
 
+
+
+![3](https://user-images.githubusercontent.com/33283321/37565885-6450fad2-2ad7-11e8-94ae-a44cfe500bb3.png)
