@@ -28,7 +28,9 @@ class WeatherTableViewController: UITableViewController ,UISearchBarDelegate{
     // MARK: - Table view data source
 
     
-    
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 50
+    }
     func searchBarCancelButtonClicked(_ searchBar:UISearchBar){
         searchBar.resignFirstResponder()
         if let locationString = searchBar.text , locationString.isEmpty{
@@ -76,7 +78,7 @@ class WeatherTableViewController: UITableViewController ,UISearchBarDelegate{
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         let weatherObject = weatherForcastData[indexPath.section]
         cell.textLabel?.text = weatherObject.summary
-        cell.detailTextLabel?.text = "\(weatherObject.temperature)"
+        cell.detailTextLabel?.text = "\(weatherObject.temperature) ℉"
         cell.imageView?.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
         cell.imageView?.image = UIImage(named: weatherObject.icon)
         

@@ -28,30 +28,30 @@
                             </scopeButtonTitles>
                         </searchBar>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" textLabel="x4c-re-0gF" detailTextLabel="lnA-Ge-79l" rowHeight="99" style="IBUITableViewCellStyleSubtitle" id="wcO-hQ-flc">
-                                <rect key="frame" x="0.0" y="84" width="375" height="99"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" textLabel="x4c-re-0gF" detailTextLabel="lnA-Ge-79l" rowHeight="192" style="IBUITableViewCellStyleSubtitle" id="wcO-hQ-flc">
+                                <rect key="frame" x="0.0" y="84" width="375" height="192"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="wcO-hQ-flc" id="dCX-XK-3nc">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="98.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="191.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="x4c-re-0gF">
-                                            <rect key="frame" x="16" y="29" width="33.5" height="20.5"/>
+                                            <rect key="frame" x="16" y="56.5" width="46.5" height="30"/>
                                             <autoresizingMask key="autoresizingMask"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Detail" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="lnA-Ge-79l">
-                                            <rect key="frame" x="16" y="52.5" width="33" height="14.5"/>
+                                            <rect key="frame" x="16" y="91" width="84" height="41"/>
                                             <autoresizingMask key="autoresizingMask"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="34"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
-                                <color key="backgroundColor" red="0.55587889073679586" green="0.85350592580993934" blue="0.97714944948186533" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.25740264434663229" green="0.59201408204130246" blue="1" alpha="0.99502090669014087" colorSpace="custom" customColorSpace="sRGB"/>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -59,7 +59,15 @@
                             <outlet property="delegate" destination="xck-G2-PN8" id="ns3-Xb-f1o"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Weather Reports" id="JPt-ap-Q4s"/>
+                    <navigationItem key="navigationItem" title="Weather Reports" id="JPt-ap-Q4s">
+                        <barButtonItem key="rightBarButtonItem" systemItem="action" id="WE9-8E-a0f">
+                            <connections>
+                                <segue destination="I5r-KU-Qm6" kind="popoverPresentation" popoverAnchorBarButtonItem="WE9-8E-a0f" id="BIg-1K-GW4">
+                                    <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                </segue>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="searchBar" destination="UvE-FW-j8e" id="F9X-P9-iAA"/>
                     </connections>
@@ -67,6 +75,51 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XoW-nD-Hai" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="964" y="-645.42728635682158"/>
+        </scene>
+        <!--Detail Table View Controller-->
+        <scene sceneID="6Zg-fq-4Cc">
+            <objects>
+                <tableViewController id="I5r-KU-Qm6" customClass="DetailTableViewController" customModule="WeatherApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="7rp-tG-j67">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="detailCell" rowHeight="146" id="Yl1-Zm-PDo" customClass="DetailCellTableViewCell" customModule="WeatherApp" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="375" height="146"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Yl1-Zm-PDo" id="Nin-Ak-iOF">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="145.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="998-xA-Uqv">
+                                            <rect key="frame" x="0.0" y="7" width="375" height="86"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZoV-Vv-N2c">
+                                            <rect key="frame" x="99" y="114" width="42" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="iconName" destination="ZoV-Vv-N2c" id="aSZ-XJ-C8G"/>
+                                    <outlet property="iconView" destination="998-xA-Uqv" id="daV-eG-63k"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="I5r-KU-Qm6" id="BGY-ag-EgA"/>
+                            <outlet property="delegate" destination="I5r-KU-Qm6" id="cBX-I3-Yew"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="VzO-R6-vva" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1712.8" y="-645.42728635682158"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="H69-Om-3np">
