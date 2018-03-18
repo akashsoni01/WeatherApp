@@ -39,7 +39,7 @@ struct Weather {
     }
   //https://api.darksky.net/forecast/2e2f9ed2435a66c75142f46cc437fa85/24.8267,77.4233
     static let basePathString = "https://api.darksky.net/forecast/2e2f9ed2435a66c75142f46cc437fa85/"
-    static func forcast(with location:String,completion: ([weather])->()){
+    static func forcast(with location:String,completion: ([Weather])->()){
         let url = basePathString + location
         let request = URLRequest(url: URL(string: url)!)
         let task = URLSession.shared.dataTask(with: request){
@@ -48,7 +48,9 @@ struct Weather {
             
             if let data = data {
                 do{
-                    
+                    if let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String:Any]{
+                        let dailyWeather = json["currently"]
+                    }
                 }catch{
                     
                 }
