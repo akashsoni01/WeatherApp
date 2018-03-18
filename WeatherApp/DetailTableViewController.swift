@@ -38,7 +38,11 @@ class DetailTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "detailCell", for: indexPath)
+        if let detailCell = cell as? DetailCellTableViewCell{
+            detailCell.iconName.text = icon[indexPath.row]
+            detailCell.iconView.image = UIImage(named:icon[indexPath.row])
+        }
 
         // Configure the cell...
 
