@@ -46,10 +46,17 @@ struct Weather {
             (data,response,error) in
             var weatherArray:[Weather] = Array<Weather>()
             
+
             if let data = data {
                 do{
                     if let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String:Any]{
-                        let dailyWeather = json["currently"]
+                        if let dailyWeather = json["daily"] as? [[String:Any]]{
+                            for oneDayWeather in dailyWeather{
+                                if let weatherObject = try? Weather(json: oneDayWeather){
+                                    weatherArray.append(weatherObject)
+                                }
+                            }
+                        }
                     }
                 }catch{
                     
@@ -63,4 +70,16 @@ struct Weather {
         
     }
     
+    //            "daily": {
+    //                "summary": "Mixed precipitation throughout the week, with temperatures falling to 39°F on Saturday.",
+    //                "icon": "rain",
+    //                "data": [{
+    //                "time": 1509944400,
+    //                "summary": "Rain starting in the afternoon, continuing until evening.",
+    //                "icon": "rain",
+    // ....................
+    //                },
+    //                ...
+    //                ]
+    //            },
 }
