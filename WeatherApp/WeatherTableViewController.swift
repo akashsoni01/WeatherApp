@@ -7,25 +7,18 @@
 //
 
 import UIKit
-
+import CoreLocation
 class WeatherTableViewController: UITableViewController ,UISearchBarDelegate{
     @IBOutlet var searchBar: UISearchBar!
-    
+    var weatherForcastData:[Weather] = []
     override func viewDidLoad() {
         super.viewDidLoad()
         searchBar.delegate = self
-        func searchBarCancelButtonClicked(_ searchBar:UISearchBar){
-            searchBar.resignFirstResponder()
-            if let locationString = searchBar.text , locationString.isEmpty{
-                //here we call our modal
-            }
+        updateWeahterForLocation(location: "India")
+        
+        
         }
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
-    }
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -34,22 +27,69 @@ class WeatherTableViewController: UITableViewController ,UISearchBarDelegate{
 
     // MARK: - Table view data source
 
+    
+    
+    func searchBarCancelButtonClicked(_ searchBar:UISearchBar){
+        searchBar.resignFirstResponder()
+        if let locationString = searchBar.text , locationString.isEmpty{
+            //here we call our modal
+            updateWeahterForLocation(location: locationString)
+        }
+    }
+    func updateWeahterForLocation(location:String){
+        CLGeocoder().geocodeAddressString(location){ ( placemark:[CLPlacemark]?,error) in
+            
+            if let location = placemark?.first?.location{
+                Weather.forcast(with: location.coordinate, completion: { (results:[Weather]?) in
+                    
+                    if let weatherData = results{
+                        self.weatherForcastData = weatherData
+                        
+                        DispatchQueue.main.async {
+                            
+                            self.tableView.reloadData()
+                        }
+                    }
+                })
+            }
+            
+            
+        }
+    }
+    // Uncomment the following line to preserve selection between presentations
+    // self.clearsSelectionOnViewWillAppear = false
+    
+    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
+    // self.navigationItem.rightBarButtonItem = self.editButtonItem
+    
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 1
+        return weatherForcastData.count
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 4
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-
+        let weatherObject = weatherForcastData[indexPath.section]
+        cell.textLabel?.text = weatherObject.summary
+        cell.detailTextLabel?.text = "\(weatherObject.temperature)"
+        cell.imageView?.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+        cell.imageView?.image = UIImage(named: weatherObject.icon)
+        
         // Configure the cell...
 
         return cell
+    }
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        let date = Calendar.current.date(byAdding: .day, value: section, to: Date())
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MMMM dd, yyyy"
+        
+        return dateFormatter.string(from: date!)
     }
 
     /*

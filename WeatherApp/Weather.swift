@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import CoreLocation
 struct Weather {
 //    currently":{
 //    "time":1521350567,
@@ -47,8 +48,8 @@ struct Weather {
     
     
     
-    static func forcast(with location:String,completion: @escaping ([Weather])->()){
-        let url = basePathString + location
+    static func forcast(with location:CLLocationCoordinate2D,completion: @escaping ([Weather])->()){
+        let url = basePathString + "\(location.latitude),\(location.longitude)"
         let request = URLRequest(url: URL(string: url)!)
         let task = URLSession.shared.dataTask(with: request){
             (data,response,error) in
