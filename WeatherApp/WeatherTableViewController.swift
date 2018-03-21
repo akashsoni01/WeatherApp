@@ -31,7 +31,7 @@ class WeatherTableViewController: UITableViewController ,UISearchBarDelegate{
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 50
     }
-    func searchBarCancelButtonClicked(_ searchBar:UISearchBar){
+    func searchBarSearchButtonClicked(_ searchBar:UISearchBar){
         searchBar.resignFirstResponder()
         if let locationString = searchBar.text , locationString.isEmpty{
             //here we call our modal
